@@ -1,0 +1,38 @@
+<div class="order-outline">
+  <p> Thank you </p>
+  <div class="table-head-border w-20"></div>
+  <div class="m-l-40">
+    Thank you {{details.firstName}} {{details.lastName}}
+    <br>
+    <br>
+    We have received your order ID  {{orderID}} for Rs. {{totalAmout}}
+    <br>
+    <br>
+    We will deliver your order to the following address:
+    <ul class="list-none">
+      <li>
+        {{details.add1}}
+      </li>
+      <li>
+        {{details.add2}}
+      </li>
+      <li>
+        {{details.city}}
+      </li>
+      <li>
+        {{details.state}}
+      </li>
+      <li>
+        {{details.pin}}
+      </li>
+      <br>
+      <br>
+      <li>
+          {{details.phone}}
+      </li>
+    </ul>
+  </div>
+  <div class="check-out">
+      <button class="checkout" (click) = "btnClick()" >Go back to Home</button>
+    </div>
+</div>

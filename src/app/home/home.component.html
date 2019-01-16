@@ -1,0 +1,89 @@
+<!-- <mat-grid-list cols="3" rowHeight="100%">
+  <mat-grid-tile [colspan] = "2"></mat-grid-tile>
+  <mat-grid-tile [colspan] = "2"></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+
+</mat-grid-list> -->
+
+<div class="home-div">
+  <div class="home-left">
+    <div>
+      <p> Menu </p>
+      <div class="table-head-border w-20"></div>
+      <div class="m-l-40">
+        <p> South Menu </p>
+        <table class="m-l-40 home-table">
+          <tr>
+            <td></td>
+            <td> Item Name</td>
+            <td>Price</td>
+            <td></td>
+          </tr>
+        </table>
+        
+        <div class="table-head-border"></div>
+        <table class="m-l-40 home-table">
+          <tr *ngFor = "let item of southItems let i = index">
+              <td>{{i + 1}}</td>
+              <td> {{item.name}}</td>
+              <td>{{item.price}}</td>
+              <td><span class="span-button" (click)="addItem(item)">[+]</span> &nbsp;&nbsp; <span class="span-button" (click)="removeItem(item ,i)">[-]</span></td>
+          </tr>
+        </table>
+      </div>
+      <div class="m-l-40">
+          <p> North Menu </p>
+          <table class="m-l-40 home-table">
+              <tr>
+                <td></td>
+                <td> Item Name</td>
+                <td>Price</td>
+                <td></td>
+              </tr>
+            </table>
+            
+            <div class="table-head-border"></div>
+            <table class="m-l-40 home-table">
+              <tr *ngFor = "let item of northItems let i = index">
+                  <td>{{i + 1}}</td>
+                  <td> {{item.name}}</td>
+                  <td>{{item.price}}</td>
+                  <td> <span class="span-button" (click) = "addItem(item)">[+]</span>&nbsp;&nbsp; <span class="span-button" (click) = "removeItem(item , i)">[-]</span></td>
+              </tr>
+            </table>
+        </div>
+    </div>
+  </div>
+  <div class= "home-right">
+    <div>
+        <p> Order </p>
+      <div class="table-head-border w-20"></div>
+        <table class="m-l-40 home-table">
+          <tr>
+            <td>Item Name</td>
+            <td>Count</td>
+            <td>Amount</td>
+          </tr>
+        </table>
+        
+        <div class="table-head-border"></div>
+        <span class="no-items" *ngIf = "selectedItems.length === 0 ">Please checkout the items to cart</span>
+        <table class="m-l-40 home-table">
+          <tr *ngFor = "let item of selectedItems let i = index">
+              <td> {{item.name}}</td>
+              <td> {{item.count}} <span class="span-button" (click) = "increaceItem(item, i)">[+]</span>&nbsp;&nbsp; <span class="span-button" (click) = "decreaseItem(item, i)">[-]</span></td>
+              <td>{{item.totalAmount}}</td>
+          </tr>
+        </table>
+        <div class="table-head-border"></div>
+        <table class="m-l-40 home-table" *ngIf = "selectedItems.length !== 0">
+            <th class="pull-left"> Total Items</th>
+            <th class= "pull-left"> {{totalCount}} </th>
+            <th class= "pull-left"> Rs {{totalAmount}}</th>
+        </table>
+    </div>
+    <div class="check-out">
+      <button class="checkout" (click) = "btnClick()" >CHECKOUT</button>
+    </div>
+  </div>
+</div>

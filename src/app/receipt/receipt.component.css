@@ -1,0 +1,23 @@
+.order-outline {
+    background: #eeeeee;
+    width: 95%;
+    margin-right: 20px;
+    padding: 20px;
+    border-left: 5px solid #cccccc;
+    margin: 20px;
+}
+.checkout {
+    text-align: center;
+    background: #3f51b5;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+    width: 30%;
+}
+.check-out {
+    text-align: center;
+    margin-top: 20px;
+}
+.list-none {
+    list-style: none;
+}

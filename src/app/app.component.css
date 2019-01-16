@@ -1,0 +1,20 @@
+.app-heading {
+    background: #eeeeee;
+    height: 40px;
+    padding: 20px;
+    color: #333333;
+    font-size: 30px;
+    display: flex;
+    margin: 20px -10px 0px -10px;
+}
+.app-menu {
+    width: 100%;
+    display: flex;
+    margin-left: 75%;
+    list-style-type: none;
+    font-size: 20px;
+}
+.menu-divider {
+    border-right: 2px solid #333;
+    padding-right: 20px;
+}

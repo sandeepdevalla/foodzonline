@@ -1,0 +1,81 @@
+<div class="order-outline">
+  <p> Checkout </p>
+  <div class="table-head-border w-20"></div>
+    <div class="m-l-40 m-t-20">
+      <div class="dis-flex">
+        <label  class="w-30">
+          First Name
+          <input type="text" class="border-none order-input w-90" [formControl]="details.firstName">
+        </label> 
+
+        <label class="w-30">
+            Last Name
+            <input type="text" class="border-none order-input w-90" [formControl]="details.lastName">
+          </label>                                                                                                                                                                                                      
+      </div>
+      <div class="dis-flex">
+          <label class="w-60">
+            Address1
+            <input type="text" class="border-none order-input w-95" [formControl]="details.add1">
+          </label>                                                                                                                                                                                                     
+        </div>
+        <div class="dis-flex">
+            <label class="w-60" >
+              Address2
+              <input type="text" class="border-none order-input w-95" [formControl]="details.add2">
+            </label>                                                                                                                                                                                                     
+          </div>
+      <div class="dis-flex">
+          <label class="w-30">
+            City
+            <input type="text" class="border-none order-input w-90" [formControl]="details.city">
+          </label> 
+  
+          <label class="w-30">
+              State
+              <input type="text" class="border-none order-input w-90" [formControl]="details.state">
+            </label>      
+            <label class="w-30">
+                Pin
+                <input type="text" class="border-none order-input w-90" [formControl]="details.pin">
+              </label>                                                                                                                                                                                                  
+        </div>
+
+        <div class="dis-flex">
+            <label class="w-30">
+              Phone Number
+              <input type="text" class="border-none order-input w-90" [formControl]="details.phone">
+            </label>                                                                                                                                                                                                     
+          </div>
+  </div>
+</div>
+<div class="order-outline">
+    <p> Order </p>
+    <div class="table-head-border w-20"></div>
+    <table class="m-l-40 home-table">
+      <tr>
+        <td>Item Name</td>
+        <td>Count</td>
+        <td>Amount</td>
+      </tr>
+    </table>
+    
+    <div class="table-head-border"></div>
+    <span class="no-items" *ngIf = 'selectedItems == null || (selectedItems && selectedItems.length === 0)'>Please checkout the items to cart</span>
+    <table class="m-l-40 home-table">
+      <tr *ngFor = "let item of selectedItems let i = index">
+          <td> {{item.name}}</td>
+          <td> {{item.count}} <span class="span-button" (click) = "increaceItem(item, i)">[+]</span>&nbsp;&nbsp; <span class="span-button" (click) = "decreaseItem(item, i)">[-]</span></td>
+          <td>{{item.price}}</td>
+      </tr>
+    </table>
+    <div class="table-head-border"></div>
+    <table class="m-l-40 home-table" *ngIf = "selectedItems.length !== 0">
+        <th class="pull-left"> Total Items</th>
+        <th class= "pull-left"> {{totalCount}} </th>
+        <th class= "pull-left"> Rs {{totalAmount}}</th>
+    </table>
+    <div class="check-out">
+        <button class="checkout" (click) = "btnClick()" >CONFIRM ORDER</button>
+      </div>
+</div>
