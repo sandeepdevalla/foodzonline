@@ -24,26 +24,29 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('selectedItems', JSON.stringify(this.selectedItems));
     this.router.navigate(['/order']);
   }
-  addItem(item) {
-    this.selectedItems.map(selItem => {
-      if (selItem.name === item.name ) {
-        selItem.totalAmount = (selItem.count + 1) * selItem.price;
-        return selItem.count++;
-      }
+  addItem(item){
+    const selectedItems = this.selectedItems.filter(selItem => {
+      return selItem.name === item.name;
     });
-    this.addNewItems(item);
+    this.checkForSelectedItem(selectedItems,item);
     this.getTotalValues();
   }
-  addNewItems(item) {
-    const selectedItems = this.selectedItems.filter(selItem => {
-       return selItem.name === item.name;
-       });
-    if (selectedItems.length === 0) {
-      const selectedItem = {...item};
-      selectedItem.count = 1;
-      selectedItem.totalAmount = selectedItem.count * selectedItem.price;
-      this.selectedItems.push(selectedItem);
-    }
+  checkForSelectedItem(selectedItems,item){
+    selectedItems.length === 0 ? this.newItem(item) : this.existingItem(item)
+  }
+  newItem(item){
+    const selectedItem = {...item};
+    selectedItem.count = 1;
+    selectedItem.totalAmount = selectedItem.count * selectedItem.price;
+    this.selectedItems.push(selectedItem);
+  }
+  existingItem(item){
+    this.selectedItems.map(selItem => {
+          if (selItem.name === item.name ) {
+            selItem.totalAmount = (selItem.count + 1) * selItem.price;
+            return selItem.count++;
+          }
+        });
   }
   removeItem(item) {
     let index = 0;
@@ -72,7 +75,6 @@ export class HomeComponent implements OnInit {
 
   }
   decreaseItem(item, index) {
-
     if ( item.count === 1) {
       this.selectedItems.splice(index, 1);
       this.getTotalValues();
@@ -90,27 +92,15 @@ export class HomeComponent implements OnInit {
     return false;
   }
   getTotalValues() {
-    const totalAmount = this.selectedItems.map((item) => {
-      return item.totalAmount;
-    });
-    this.totalAmount = totalAmount.reduce((total, amount) => {
-      return total + amount;
-    });
-    const totalCount = this.selectedItems.map((item) => {
-      return item.count;
-    });
-    this.totalCount = totalCount.reduce((total, count) => {
-      return total + count;
+    this.totalAmount =0;
+    this.totalCount =0;
+    this.selectedItems.map((item) => {
+      this.totalAmount += item.totalAmount;
+      this.totalCount  += item.count;
     });
   }
   getDetails() {
-    this.items = items.default.items;
-    this.southItems = this.items.filter(item => {
-      return item.type === 'south';
-    });
-    this.northItems = this.items.filter(item => {
-      return item.type === 'north';
-    });
+    this.southItems = items.default.southItems;
+    this.northItems = items.default.northItems;
   }
-
 }
